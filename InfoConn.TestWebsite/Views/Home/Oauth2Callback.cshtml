@@ -1,0 +1,22 @@
+﻿@model IEnumerable<InfoConn.TestWebsite.InfoConnServiceReference.Event>
+@{
+    ViewBag.Title = "Oauth";
+}
+<form method="post" runat="server">
+<select>
+    @foreach (var cld in (ViewData["MyListItems"] as InfoConn.TestWebsite.InfoConnServiceReference.Calendar[]))
+    {
+        <option value=@cld.CalendarId>@cld.Summary</option>
+    }
+</select>
+
+<p>
+    <ul>
+    
+        @foreach (var item in Model)
+        { 
+            <li>@item.Summary</li>
+        }
+    </ul>
+</p>
+</form>

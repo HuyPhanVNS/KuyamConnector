@@ -1,0 +1,145 @@
+﻿@model IEnumerable<InfoConn.TestWebsite.InfoConnServiceReference.Event>
+@{
+    ViewBag.Title = "ggCalendar";
+}
+<form method="post" runat="server">
+<fieldset style="border-color: Teal; border-bottom-width: medium; color: Gray;">
+    <legend>Filter</legend>
+    <div class="editor-field" style="margin-bottom: 15px;">
+        <label style="padding-right: 15px;">
+            Calendar</label>
+        <select id="ddlCalendar" name="calendarid" >
+            @*@foreach (var cld in Model)*@
+            @{                
+                if (ViewData["MyListItems"] != null)
+                {
+                    foreach (var cld in (ViewData["MyListItems"] as InfoConn.TestWebsite.InfoConnServiceReference.Calendar[]))
+                    {
+                        if (ViewData["selectedcalendarid"] != null)
+                        {
+                            if (ViewData["selectedcalendarid"].ToString().Trim().CompareTo(cld.CalendarId.Trim()) == 0)
+                            {
+                                <option value='@Server.UrlEncode(cld.CalendarId)' selected ='selected'>@cld.Summary</option>
+                            }
+                            else
+                            { 
+                                <option value='@Server.UrlEncode(cld.CalendarId)'>@cld.Summary</option>
+                            }
+                        }
+                        else
+                        { 
+                            <option value='@Server.UrlEncode(cld.CalendarId)'>@cld.Summary</option>
+                        }
+                   }
+                }
+            }            
+        </select>
+        <label style="padding-right: 15px;  padding-left:30px;">
+            Location</label>
+        <input id="txtLocation" name="location" runat="server" type="Text" />
+    </div>
+    <div class="editor-field" style="margin-bottom: 25px;">
+        <label style="padding-right: 15px;">
+            Event ID</label>
+        <input id="txtID" name="eventId" runat="server" type="Text" style="margin-right: 15px;" />
+        <label style="padding-right: 15px; padding-left:15px;">
+            Event name</label>
+        <input id="txtEventName" name="name" runat="server" type="Text" />
+    </div>
+    <div class="editor-field">
+        <label style="padding-right: 5px;">
+            From date</label>
+        <input id="txtFromDate"  class='datepicker' name="fromDate" runat="server" type="Text"
+            style="margin-right: 25px;" />
+        <label style="padding-right: 40px;  padding-left: 7px;">
+            To date</label>
+        <input id="txtToDate"   class='datepicker' name="toDate" runat="server" type="Text" />
+    </div>
+    <p>
+        <input id="btnSearch" runat="server" type="submit" value="Search" style="margin-left: 100px;" />
+        <input id="btnExport" runat="server" type="submit" name="ept" value="Export All Events" style="margin-left: 50px;" />
+         <input id="btnRefresh" runat="server" type="submit" name="refresh" value="Refresh"
+                style="margin-left: 50px;" />
+    </p>
+</fieldset>
+<div id="eventDiv">
+</div>
+<br />
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".datepicker").datepicker();
+    });
+    
+</script>
+<div>
+    <fieldset>
+        <legend>List of events</legend>
+        <table>
+            <tr>
+               
+                <th>
+                    Event ID
+                </th>
+                <th>
+                    Event Name
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Location
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {          
+                            
+                <tr>
+                   
+                    <td>
+                        <div style="word-wrap:break-word; width: 300px;">
+                        @Html.DisplayFor(modelItem => item.EventId)
+                        </div>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Summary)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+</div>
+@*<script type="text/javascript">
+    $(function () {
+        $('#ddlCalendar').change(function () {
+            LoadCalendarEvent();
+
+        });
+    });
+
+    function LoadCalendarEvent() {
+        var calendarId = $('#ddlCalendar').val();
+        if (calendarId != null) {
+            var link = '@Url.Action("GetCalendarEvents")?calendarId=' + calendarId;
+            $('#eventDiv').load(link);
+        }
+    }
+</script>*@

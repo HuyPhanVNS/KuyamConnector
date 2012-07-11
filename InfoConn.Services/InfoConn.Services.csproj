@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{542EFFCF-97C1-4909-9A28-C6AFDAE19993}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InfoConn.Services</RootNamespace>
+    <AssemblyName>InfoConn.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net40-client\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConnectorService.cs" />
+    <Compile Include="ConnectorManager.cs" />
+    <Compile Include="IoC.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InfoConn.Connector.Facebook\InfoConn.Connector.Facebook.csproj">
+      <Project>{8F9D8ED4-7B53-454D-B224-6094B9298C36}</Project>
+      <Name>InfoConn.Connector.Facebook</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoConn.Connector.Google\InfoConn.Connector.Google.csproj">
+      <Project>{D2443492-13CB-4BBF-9B0B-054F98DA572C}</Project>
+      <Name>InfoConn.Connector.Google</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoConn.Connector.ICalendar\InfoConn.Connector.ICalendar.csproj">
+      <Project>{31FBABBD-CA53-4401-A69F-5EACE4BB9CCF}</Project>
+      <Name>InfoConn.Connector.ICalendar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoConn.Core\InfoConn.Core.csproj">
+      <Project>{C242F4C4-399E-4DFD-B907-AE428874B511}</Project>
+      <Name>InfoConn.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfoConn.Data\InfoConn.Data.csproj">
+      <Project>{0810C569-7BB6-4337-B234-EBBB2B13424A}</Project>
+      <Name>InfoConn.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

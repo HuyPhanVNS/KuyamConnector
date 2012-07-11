@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "iCalendar";
+}
+<h2>
+    iCalendar</h2>
+<form action="" method="post" enctype="multipart/form-data">
+<label for="file">
+    File name:</label>
+<input runat="server" type="file" name="file" id="file" />
+<input runat="server" type="submit" value="Upload" />
+<br />
+Result:
+<br />
+<ul>
+    @foreach (var item in Model)
+    { 
+        <li>@item.Summary</li>
+    }
+</ul>
+</form>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<InfoConn.TestWebsite.InfoConnServiceReference.Event>
+<form action="" method="post" enctype="multipart/form-data">
+<div>
+    <fieldset>
+        <legend>List of events</legend>
+        <table>
+            <tr>
+                <th>
+                </th>
+                <th>
+                    Event ID
+                </th>
+                <th>
+                    Event Name
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Location
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {          
+                            
+                <tr>
+                    <td>
+                        @Html.ActionLink("Export", "Export", new { id = item.EventId })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Summary)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+    </fieldset>
+</div>
+</form>

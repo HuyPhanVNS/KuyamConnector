@@ -1,0 +1,102 @@
+﻿@model IEnumerable<InfoConn.TestWebsite.InfoConnServiceReference.Event>
+@{
+    ViewBag.Title = "fbCalendar";
+}
+<form action="" method="post" enctype="multipart/form-data">
+<div>
+    <fieldset>
+        <legend>Filter</legend>
+        <div class="editor-field" style="margin-bottom: 15px;">
+            <label style="padding-right: 25px;">
+                Event ID</label>
+            <input id="txtID" name="eventId" runat="server" type="Text" style="margin-right: 15px;" />
+            <label style="padding-right: 15px;">
+                Event Name</label>
+            <input id="txtEventName" name="name" runat="server" type="Text" />
+            <label style="padding-right: 15px;padding-left: 15px;">
+                Location</label>
+            <input id="txtLocation" name="location" runat="server" type="Text" style="padding-left: 15px;" />
+        </div>
+        <div class="editor-field">
+            <label style="padding-right: 15px;">
+                From date</label>
+            <input id="txtFromDate" class='datepicker' name="fromDate" runat="server" type="Text"
+                style="margin-right: 15px;" />
+            <label style="padding-right: 42px;">
+                To date</label>
+            <input id="txtToDate" class='datepicker' name="toDate" runat="server" type="Text" />
+        </div>
+        <br />
+        <p>
+            <input id="btnSearch" runat="server" type="submit" value="Search" style="margin-left: 100px;" />
+            <input id="btnExport" runat="server" type="submit" name="ept" value="Export All Events" style="margin-left: 50px;" />
+            <input id="btnRefresh" runat="server" type="submit" name="refresh" value="Refresh"
+                style="margin-left: 50px;" />
+        </p>
+    </fieldset>
+</div>
+<div>
+
+   @if (ViewData["IsRefresh"] != null)
+   {
+       if (Convert.ToBoolean(ViewData["IsRefresh"]) == true)
+       {
+           ViewBag.Message = "Refreshing user calendars all caches successful ";
+       }
+       else
+       {
+           ViewBag.Message = "Refreshing user calendars all caches fail ";
+       }
+   }
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".datepicker").datepicker();
+    });
+    
+</script>
+<h3>
+    List of events</h3>
+<br />
+<table>
+    <tr>
+        <th>
+            Event ID
+        </th>
+        <th>
+            Event Name
+        </th>
+        <th>
+            Start Date
+        </th>
+        <th>
+            End Date
+        </th>
+        <th>
+            Location
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+        </tr>
+    }
+</table>
+</form>
